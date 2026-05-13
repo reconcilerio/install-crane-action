@@ -37,14 +37,11 @@ runs:
     continue-on-error: true
   - name: Build crane, if unavailable to download
     if: steps.download-crane.outcome == 'failure'
-    run: |
-      set -euo pipefail
-
-      go install github.com/google/go-containerregistry/cmd/crane@${{ inputs.version }}
-      cp $(go env GOPATH)/bin/crane /usr/local/bin
-    shell: bash
-    env:
-      GOTOOLCHAIN: auto
+    uses: reconcilerio/go-install-action@v1
+    with:
+      package: github.com/google/go-containerregistry/cmd/crane
+      version: "${{ inputs.version }}"
+      output-dir: /usr/local/bin
   - name: crane version
     run: |
       set -euo pipefail
