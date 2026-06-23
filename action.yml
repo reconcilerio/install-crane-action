@@ -13,7 +13,7 @@ runs:
     with:
       package: github.com/google/go-containerregistry/cmd/crane
       version: "${{ inputs.version }}"
-      download-url-template: https://github.com/google/go-containerregistry/releases/download/${version}/go-containerregistry_${os^}_${arch/amd64/x86_64}.tar.gz
+      download-url-template: https://github.com/google/go-containerregistry/releases/download/${version}/go-containerregistry_$(echo "${os:0:1}" | tr '[:lower:]' '[:upper:]')${os:1}_${arch/amd64/x86_64}.tar.gz
       download-path-within-archive: crane
       output-dir: /usr/local/bin
   - name: crane version
