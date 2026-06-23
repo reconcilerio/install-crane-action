@@ -16,10 +16,3 @@ runs:
       download-url-template: https://github.com/google/go-containerregistry/releases/download/${version}/go-containerregistry_$(echo "${os:0:1}" | tr '[:lower:]' '[:upper:]')${os:1}_${arch/amd64/x86_64}.tar.gz
       download-path-within-archive: crane
       output-dir: /usr/local/bin
-  - name: crane version
-    run: |
-      set -euo pipefail
-
-      echo "installed to: $( which crane )"
-      echo "crane version: $( crane version )"
-    shell: bash

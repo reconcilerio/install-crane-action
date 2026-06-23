@@ -36,3 +36,9 @@ jobs:
         go-version: stable
     - uses: ./
       with: ${{ matrix.with || fromJson('{}') }}
+    - name: crane version
+      run: |
+        set -euo pipefail
+
+        echo "installed to: $( which crane )"
+        echo "crane version: $( crane version )"
